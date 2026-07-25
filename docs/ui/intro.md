@@ -33,5 +33,5 @@ filter management, and mail delivery/archival is handled asynchronously by the
 - [Keyboard Shortcuts](./keyboard-shortcuts.md) — the full shortcut reference
 - [Admin Console](./admin-panel.md) — domain provisioning and branding
 - [Configuration](./configuration.md) — environment variables
-- [Deployment](./deployment.md) — Docker build & run
+- [Alternative Deployment](./alternate-deployment.md)
 - [Contributing](./contributing.md) — lint rules and PR process

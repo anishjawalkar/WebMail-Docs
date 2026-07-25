@@ -56,9 +56,9 @@ export default function QuickStart(): ReactNode {
             }
             lede="Docker is the realistic path to a full self-hosted deployment — the docs cover configuration, connecting your mail server, and running the API and worker alongside it."
           />
-          <GhostButton to="/docs/ui/deployment">
-            Read the deployment guide <ArrowIcon />
-          </GhostButton>
+         <GhostButton to="/docs/ui/alternate-deployment">
+                      Read the deployment guide <ArrowIcon />
+         </GhostButton>         
         </div>
 
         <div className="tw-min-w-0 tw-overflow-hidden tw-rounded-2xl tw-border tw-border-slate-200 tw-bg-white tw-shadow-2xl tw-shadow-slate-900/10 dark:tw-border-slate-700 dark:tw-bg-slate-900 dark:tw-shadow-black/40">
