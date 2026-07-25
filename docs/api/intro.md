@@ -35,10 +35,9 @@ RabbitMQ queue, consumed by the [RMQ worker](/docs/worker).
 
 ## Where to go next
 
-- [Getting Started](./getting-started.md) — run the API locally
+- [Getting Started](./getting-started.md) — run the API locally using docker.
 - [Architecture](./architecture.md) — how the layers fit together, and the "why" behind
   a few unusual design choices (no ORM, per-request IMAP auth, two Postgres databases)
 - [Configuration](./configuration.md) — every environment variable
-- [Deployment](./deployment.md) — Docker
 - Interactive API reference: once running, Swagger UI is available at `/docs` and
   ReDoc at `/redoc` on your running instance

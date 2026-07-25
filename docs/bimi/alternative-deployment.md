@@ -1,6 +1,6 @@
 ---
 
-id: alternate-deployment
+id: alternative-deployment
 title: Alternative Deployment
 sidebar_position: 3
 -------------------

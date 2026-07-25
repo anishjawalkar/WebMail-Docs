@@ -39,7 +39,7 @@ Once running, the service exposes REST endpoints for DNS validation and company 
 ## Where to go next
 
 - [Getting Started](./getting-started.md) — deploy using the recommended Docker image
-- [Alternative Deployment](./alternate-deployment.md) — run the service directly from source
+- [Alternative Deployment](./alternative-deployment.md) — run the service directly from source
 - [Architecture](./architecture.md) — service design, request flow, and DNS resolution
 - [Configuration](./configuration.md) — environment variables and runtime configuration
 - [DNS Records reference](./reference/dns-records.md) — DNS lookup and validation endpoints

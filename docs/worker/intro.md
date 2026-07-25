@@ -30,10 +30,9 @@ entire job is: consume a message, send or save an email, acknowledge the message
 
 ## Where to go next
 
-- [Getting Started](./getting-started.md) — run the worker locally
+- [Getting Started](./getting-started.md) — run the worker locally using docker
 - [Architecture](./architecture.md) — the consumer/worker-pool model, and how SMTP/IMAP
   connections are pooled
 - [Message Format](./message-format.md) — the JSON contract the queue message must
   match (this is what [Webmail API](/docs/api) publishes)
 - [Configuration](./configuration.md) — environment variables
-- [Deployment](./deployment.md) — Docker
