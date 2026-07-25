@@ -6,61 +6,65 @@ sidebar_position: 2
 
 # Getting Started
 
+This guide explains how to deploy **Webmail BIMI API** using the published Docker image. This is the recommended deployment method for both development and production.
+
+> Recomended that to do this in first step. (1)
+
 ## Prerequisites
 
-- Node.js 20+
-- npm
-- Outbound DNS access (the service queries `8.8.8.8`, `1.1.1.1`, and `8.8.4.4`
-  directly — see [Architecture](./architecture.md#dns-resolution))
+- Docker
+- Docker Compose
+- A directory on the host to store branding images and configuration
+- A host with at least **2 vCPUs** and **2 GB RAM**
+- A directory on the host to store branding images and configuration
 
-There's no database to stand up — company branding config is a JSON file on disk, and
-DNS lookups are stateless.
+The BIMI API does not require a database. Company branding configuration is stored in a JSON file, and uploaded branding assets are stored on the local filesystem.
 
-## Clone and install
+## Docker Compose
 
-```bash
-git clone https://github.com/Yukthi-Systems/WebMail-BIMI-API.git
-cd WebMail-BIMI-API
-npm install
+Create a `docker-compose.yml` file:
+
+```yaml
+services:
+  dns-lookup-api:
+    image: rjyspl/webmail-bimi-api:latest
+    container_name: dns-lookup-api
+    environment:
+      - PORT=3001
+      - NODE_ENV=development
+      - CORS_ORIGIN=http://localhost:3000,http://localhost:5173
+      - API_KEYS=default:changeme
+      - DOMAIN_IMAGES_PATH=/data/images
+      - COMPANIES_CONFIG_PATH=/data/config/companies.json
+    ports:
+      - "127.0.0.1:3001:3001"
+    restart: always
+    volumes:
+      - ./data:/data
 ```
 
-## Configure environment variables
+Start the service:
 
 ```bash
-cp .env.example .env
+docker compose up -d
 ```
 
-At minimum, generate a real API key rather than shipping with the default:
+## Verify the deployment
+
+Confirm the service is running:
 
 ```bash
-npm run genkey -- my-app-name
+curl http://localhost:3001/health
 ```
 
-This prints an `API_KEYS=name:key` line to paste into `.env`. See
-[Configuration](./configuration.md) for every variable.
+A successful response indicates that the API is running correctly.
 
-## Run the dev server
+## Next steps
 
-```bash
-npm run dev
-```
+Before using the service in production:
 
-This runs `tsx watch src/server.ts`, restarting on file changes. By default it listens
-on port `3001` — check `http://localhost:3001/health`.
+- Replace the default API key with a secure value.
+- Configure `CORS_ORIGIN` for your Webmail UI deployment.
+- Configure `DOMAIN_IMAGES_PATH` and `COMPANIES_CONFIG_PATH` if branding assets are stored in a different location.
 
-## Try it
-
-```bash
-curl "http://localhost:3001/api/dns/validate?domain=example.com" \
-  -H "x-api-key: <your-key>"
-```
-
-## Build for production
-
-```bash
-npm run build
-npm start
-```
-
-`build` compiles TypeScript to `dist/`; `start` runs the compiled output with
-`node dist/server.js`. See [Deployment](./deployment.md) for the Docker image.
+For configuration details, see the [Configuration](./configuration.md) guide.

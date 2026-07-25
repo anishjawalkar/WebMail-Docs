@@ -23,6 +23,8 @@ It has no database — company branding config lives in a JSON file
 (`src/config/companies.json` by default), and images live on a plain filesystem path.
 There's no per-user data here at all; it's pure lookup/serving infrastructure.
 
+Once running, the service exposes REST endpoints for DNS validation and company branding, which are consumed by Webmail UI.
+
 ## What it does
 
 - **DNS record lookups** — `/api/dns/bimi`, `/spf`, `/dkim`, `/dmarc`, `/mx`,
@@ -36,10 +38,9 @@ There's no per-user data here at all; it's pure lookup/serving infrastructure.
 
 ## Where to go next
 
-- [Getting Started](./getting-started.md) — run it locally
-- [Architecture](./architecture.md) — request flow, auth, and the DNS-resolution
-  details
-- [Configuration](./configuration.md) — every environment variable
-- [Deployment](./deployment.md) — Docker
-- [DNS Records reference](./reference/dns-records.md) and
-  [Branding reference](./reference/branding.md)
+- [Getting Started](./getting-started.md) — deploy using the recommended Docker image
+- [Alternative Deployment](./alternate-deployment.md) — run the service directly from source
+- [Architecture](./architecture.md) — service design, request flow, and DNS resolution
+- [Configuration](./configuration.md) — environment variables and runtime configuration
+- [DNS Records reference](./reference/dns-records.md) — DNS lookup and validation endpoints
+- [Branding reference](./reference/branding.md) — company branding configuration and asset management

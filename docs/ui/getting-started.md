@@ -46,9 +46,9 @@ Webmail UI
     │
     ├── Webmail API
     │       │
-    │       ├── RMQ Worker
-    │       │
-    │       └── PostgreSQL
+    │       ├── PostgreSQL
+    │       ├── Memcached
+    │       └── RMQ Worker
     │
     └── BIMI API
 ```

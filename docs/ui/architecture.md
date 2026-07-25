@@ -100,29 +100,24 @@ Webmail UI is a modern single-page web application (SPA) that provides a respons
 ## High-Level Architecture
 
 ```text
-                   User
-                     │
-                     ▼
-          ┌────────────────────┐
-          │     Web Browser    │
-          └────────────────────┘
-                     │
-                 HTTPS
-                     │
-                     ▼
-          ┌────────────────────┐
-          │     Webmail UI     │
-          └────────────────────┘
-              │           │
-              │           │
-              ▼           ▼
-      Webmail API      BIMI API
-              │
-              ▼
-         RMQ Worker
-              │
-              ▼
-         PostgreSQL
+                     Internet
+                        │
+                        ▼
+              Reverse Proxy
+       (Nginx / Caddy / Traefik)
+                        │
+         ┌──────────────┴──────────────┐
+         │                             │
+         ▼                             ▼
+   Webmail UI                    BIMI API
+         │
+         ▼
+    Webmail API
+         │
+    ┌────┼──────────────┐
+    │    │              │
+    ▼    ▼              ▼
+PostgreSQL  Memcached  RMQ Worker
 ```
 
 ## Component Overview
@@ -198,11 +193,10 @@ A typical container deployment consists of the following services.
          ▼
     Webmail API
          │
-         ▼
-     RMQ Worker
-         │
-         ▼
-     PostgreSQL
+    ┌────┼──────────────┐
+    │    │              │
+    ▼    ▼              ▼
+PostgreSQL  Memcached  RMQ Worker
 ```
 
 The reverse proxy terminates HTTPS connections and forwards requests to the appropriate backend services.
